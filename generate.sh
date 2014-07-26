@@ -29,6 +29,8 @@ shift
 
 if [ "$format" == "png" ]; then
 	JOPTS="$JOPTS -DimageWidth=400"
+elif [ "$format" == "pdf" ]; then
+	JOPTS="$JOPTS -Xmx512m"
 fi
 
 if [ "$1" == "" ]; then
