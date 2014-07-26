@@ -4,14 +4,15 @@
 # in the current directory's children into the 'target' directory
 
 if [ "$1" = "" -o "$1" = "-h" -o "$1" = "--help" ]; then
-	echo "Usage: $0 renderset [cardset [cardset ... ] ]"
+	echo "Usage: $0 <format> [<cardset> [<cardset> ... ] ]"
 	echo "  compose all cardsets w/in the current directory, or a specific"
-	echo "  descriptor (or list of descriptors), using the named renderset"
+	echo "  descriptor (or list of descriptors), into the specified format"
 	exit 0
 fi
 
 cd `dirname $0`
 dir=`pwd`
+JOPTS=""
 
 if [ ! -d .compositor ]; then
 	echo "you need to run install.sh first."
@@ -20,14 +21,18 @@ fi
 
 function generate() {
 	echo "----------------------------------------------------------------------"
-	java -jar .compositor/target/card-creator-*-all.jar compose $1 $renderset target/`basename $1 | cut -d . -f 1`
+	java $JOPTS -jar .compositor/target/card-creator-*-all.jar compose $1 $format target/`basename $1 | cut -d . -f 1`
 }
 
-renderset=$1
+format=$1
 shift
 
+if [ "$format" == "png" ]; then
+	JOPTS="$JOPTS -DimageWidth=400"
+fi
+
 if [ "$1" == "" ]; then
-	for i in `find . -depth 2 -type f -name "*.md" | egrep '\./([^/]+)/\1\.md'`; do
+	for i in `find . -maxdepth 2 -mindepth 2 -type f -name "*.md" | egrep '\./([^/]+)/\1\.md'`; do
 		generate $i
 	done
 else
