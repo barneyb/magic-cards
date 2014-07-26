@@ -14,7 +14,7 @@ Usage
 The basic usage is:
 
     ./install.sh
-    ./generate.sh screen
+    ./generate.sh png
 
 which will download and and install the compositor, and then take all Markdown files
 exactly one level beneath the current directory and run them through the composition
