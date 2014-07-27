@@ -4,9 +4,12 @@
 # in the current directory's children into the 'target' directory
 
 if [ "$1" = "" -o "$1" = "-h" -o "$1" = "--help" ]; then
-	echo "Usage: $0 <format> [<cardset> [<cardset> ... ] ]"
+	echo "Usage: $0 <opts> <format> [<cardset> [<cardset> ... ] ]"
 	echo "  compose all cardsets w/in the current directory, or a specific"
 	echo "  descriptor (or list of descriptors), into the specified format"
+	echo "  Supported options are:"
+	echo "    -p, --print   generate cards suitable for sending to the"
+	echo "                  printer (rotated, bled, text outlines, etc.)"
 	exit 0
 fi
 
@@ -21,8 +24,14 @@ fi
 
 function generate() {
 	echo "----------------------------------------------------------------------"
-	java $JOPTS -jar .compositor/target/card-creator-*-all.jar compose $1 $format target/`basename $1 | cut -d . -f 1`
+	java $JOPTS -jar .compositor/target/card-creator-*-all.jar $cmd $1 $format target/`basename $1 | cut -d . -f 1`
 }
+
+cmd="compose"
+if [ "$1" == "-p" -o "$1" == "--print" ]; then
+	cmd="compose-print"
+	shift
+fi
 
 format=$1
 shift
