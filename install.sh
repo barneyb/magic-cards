@@ -57,9 +57,7 @@ mvn clean package
 cd ..
 
 cleanDir .runner
-ls .compositor/target/card-creator-*-SNAPSHOT-all.jar | head > .runner/jar-file.txt
-unzip -p `cat .runner/jar-file.txt` META-INF/MANIFEST.MF | grep 'Main-Class:' | cut -d : -f 2- > .runner/main-class.txt
+cp `ls .compositor/target/card-creator-*-SNAPSHOT-all.jar | head` .runner/compositor.jar
+unzip -p .runner/compositor.jar META-INF/MANIFEST.MF | grep 'Main-Class:' | head | cut -d : -f 2- > .runner/main-class.txt
 
-cleanDir .assets
-unzip `cat .runner/jar-file.txt` assets/* -d .assets
-
+echo '.compositor/src/main/resources' > .runner/resources-dir.txt
