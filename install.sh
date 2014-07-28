@@ -14,6 +14,16 @@ if [ "$1" = "-h" -o "$1" = "--help" ]; then
 	exit 0
 fi
 
+function cleanDir() {
+	dir=$1
+	if [ -d $dir ]; then
+		rm -rf $dir
+	elif [ -f $dir ]; then
+		echo "There is a malformed '$dir' file in the way.  Deleted it and try again."
+	fi
+	mkdir $dir
+}
+
 cd `dirname $0`
 
 if [ -d .compositor ]; then
@@ -22,11 +32,11 @@ if [ -d .compositor ]; then
 		git checkout master
 		git pull
 	else
-		exit "There is a malformed 'compositor' directory in the way.  Deleted it and try again."
+		exit "There is a malformed '.compositor' directory in the way.  Deleted it and try again."
 		exit 2
 	fi
 elif [ -f .compositor ]; then
-	echo "There is a malformed 'compositor' file in the way.  Deleted it and try again."
+	echo "There is a malformed '.compositor' file in the way.  Deleted it and try again."
 	exit 1
 else
 	git clone https://github.com/barneyb/magic-card-creator.git .compositor
@@ -42,3 +52,14 @@ fi
 # fi
 
 mvn clean package
+
+# get back up to the root dir
+cd ..
+
+cleanDir .runner
+ls .compositor/target/card-creator-*-SNAPSHOT-all.jar | head > .runner/jar-file.txt
+unzip -p `cat .runner/jar-file.txt` META-INF/MANIFEST.MF | grep 'Main-Class:' | cut -d : -f 2- > .runner/main-class.txt
+
+cleanDir .assets
+unzip `cat .runner/jar-file.txt` assets/* -d .assets
+

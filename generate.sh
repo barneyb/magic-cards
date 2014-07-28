@@ -24,7 +24,7 @@ fi
 
 function generate() {
 	echo "----------------------------------------------------------------------"
-	java $JOPTS -jar .compositor/target/card-creator-*-all.jar $cmd $1 $format target/`basename $1 | cut -d . -f 1`
+	java $JOPTS -cp .assets:`cat .runner/jar-file.txt` `cat .runner/main-class.txt` $cmd $1 $format target/`basename $1 | cut -d . -f 1`
 }
 
 cmd="compose"
