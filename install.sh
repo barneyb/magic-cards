@@ -50,13 +50,6 @@ else
 	git checkout master
 fi
 
-# if [ "$1" != "" ]; then
-# 	echo
-# 	echo "Don't worry about the 'detached HEAD' state message below.  It's expected."
-# 	echo
-# 	git checkout tags/$1
-# fi
-
 mvn clean package
 
 # get back up to the root dir
