@@ -29,10 +29,16 @@ cd `dirname $0`
 if [ -d .compositor ]; then
 	cd .compositor
 	if [ -d .git ]; then
+		if [ `git status --porcelain | wc -l` -ne 0 ]; then
+			echo "The '.compositor' directory is not clean.  Reset or commit before re-installing."
+			echo
+			git status
+			exit 3
+		fi
 		git checkout master
 		git pull
 	else
-		exit "There is a malformed '.compositor' directory in the way.  Deleted it and try again."
+		echo "There is a malformed '.compositor' directory in the way.  Deleted it and try again."
 		exit 2
 	fi
 elif [ -f .compositor ]; then
