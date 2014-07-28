@@ -6,13 +6,14 @@
 
 if [ "$1" = "-h" -o "$1" = "--help" ]; then
 	echo "Usage: $0 [ <version> ]"
-	echo "  ensure the composition framework is ready to run"
-	echo "  the 'version' parameter must be one of:"
+	echo "  ensure the composition framework is ready to run the 'version' parameter must"
+	echo "  be one of:"
 #	echo "    list    - list the available versions and exit"
 #	echo "    latest  - the latest released version"
 	echo "    vX.Y.Z  - a specific release (at GitHub)"
 	echo "    dev     - the current development HEAD"
-	echo "  If no version is specified, 'dev' will be used."
+	echo "  If no version is specified, 'dev' will be used. The list of available versions"
+	echo "  can be found at: https://github.com/barneyb/magic-card-creator/releases"
 	exit 0
 fi
 
