@@ -17,7 +17,7 @@ cd `dirname $0`
 dir=`pwd`
 JOPTS=""
 
-if [ ! -d .compositor ]; then
+if [ ! -f .runner/compositor.jar ]; then
 	echo "you need to run install.sh first."
 	exit 1
 fi
