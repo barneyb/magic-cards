@@ -81,4 +81,4 @@ case "$1" in
 	;;
 esac
 
-unzip -p .runner/compositor.jar META-INF/MANIFEST.MF | grep 'Main-Class:' | head | cut -d : -f 2- > .runner/main-class.txt
+unzip -p .runner/compositor.jar META-INF/MANIFEST.MF | grep 'Main-Class:' | head | tr -d '\r' | cut -d : -f 2- > .runner/main-class.txt
