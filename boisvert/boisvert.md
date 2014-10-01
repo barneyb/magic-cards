@@ -6,17 +6,19 @@
 
 ![Dolores Boisvert](artwork/barney.png)
 
-Legendary Creature - Human Legend 5/1
+Legendary Creature - Human Legend
 
 Haste, trample
 
 At end of turn, return Barney of the Green Woods to it's owner's hand.
 
+5/1
+
 ## Emery of the Green Woods 2WWBB
 
 ![Barney Boisvert](artwork/emery.jpg)
 
-Enchantment Creature - Human Unicorn 4/5
+Enchantment Creature - Human Unicorn
 
 Bestow {5}{W}{W}{B}
 
@@ -24,15 +26,19 @@ Vigilance, hexproof.
 
 Enchanted creature gets +4/+5 and has vigilance and hexproof.
 
+4/5
+
 ## Lindsay of the Green Woods 2GGG
 
 ![Barney Boisvert](artwork/lindsay.jpg)
 
-Creature - Unicorn Spirit 5/4
+Creature - Unicorn Spirit
 
 Trample
 
 {G}: Lindsay of the Green Woods gets +1/+1 until end of turn.  If activated more than once in a single turn, it dies at end of turn.
+
+5/4
 
 ## Lindsay's Shoes UG
 
