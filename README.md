@@ -8,25 +8,23 @@ The impetus was issues with the card generator at [http://www.mtgcardmaker.com/]
 after which we decided to build our own generator (linked above) and these are the
 set definitions to actually create cards.
 
-Usage
------
+Each set is defined by a descriptor file and a collection of card artwork as referenced in the descriptor.
+There are two formats for descriptors, Markdown and XML.  The former is a lot nicer to work with, but only
+supports a subset of functionality.  The XML format supports the full functionality of the composition toolkit,
+but is more cumbersome to work with.
 
-The basic usage is:
+The specific features that XML is required for include:
 
-    ./install.sh
-    ./generate.sh png
+* planeswalkers
+* levelers (e.g., Guul Draz Assassin)
+* fused spells
+* rarity
+* overlay artwork
+* game symbols in flavor text
+* reminder text
+* color indicators (i.e., card colors which are not based on casting cost)
+* watermarks
 
-which will download and and install the compositor, and then take all Markdown files
-exactly one level beneath the current directory and run them through the composition
-engine to spit out composed images into a subdirectory of `target` (including an
-HTML file that just shows each card in a grid for easier preview).
-
-Note that the install script requires both a JDK and Maven to be available on your
-`$PATH`, while the generate script only requires a JRE.
-
-You can also list specific cardset descriptors on the command line if you don't want
-to generate them all.
-
-Finally, you can use the `validate.sh` script if you want to validate descriptors,
-but not actually generate cards.  It doesn't take a renderset key, but does accept
-one or more descriptors paths (just like `generate.sh`).
+This leaves the _vast_ majority of card design choices available using the basic Markdown-based descriptor
+format.  A conversion tool will be coming available at some point so it is safe to start with Markdown and
+easily convert to XML if/when it becomes necessary.
